@@ -51,10 +51,16 @@ xkcd [options]
 
 ### Example commands
 
-- Show a random comic:
+- Show latest comic:
 
   ```sh
   xkcd
+  ```
+
+- Show a random comic:
+
+  ```sh
+  xkcd random
   ```
 
 - Fetch a specific comic by number:

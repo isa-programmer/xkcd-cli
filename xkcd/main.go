@@ -23,7 +23,7 @@ import (
 
 
 
-func printXkcdComic(comic XkcdJsonStruct) {
+func printXkcdComic(comic XkcdJsonStruct,color string) {
 	var output string
 	output = fmt.Sprintf(`
 	- Comic Link: https://xkcd.com/%d
@@ -35,8 +35,8 @@ func printXkcdComic(comic XkcdJsonStruct) {
 	style := lipgloss.NewStyle().
 				Width(80).
 				Border(lipgloss.ThickBorder()).
-				BorderForeground(lipgloss.Color("#820173")).
-				Background(lipgloss.Color("#56034c"))
+				BorderForeground(lipgloss.Color(color)).
+				Background(lipgloss.Color(color))
 
 	fmt.Println(style.Render(output))
 }
@@ -53,8 +53,11 @@ type XkcdJsonStruct struct{
 
 func fetchComic(comicId int) (XkcdJsonStruct, error){
 	var comic XkcdJsonStruct
+	var url string = "https://xkcd.com/info.0.json"
+	if comicId != 0{
+		url = fmt.Sprintf("https://xkcd.com/%d/info.0.json",comicId)
+	}
 	
-	url := fmt.Sprintf("https://xkcd.com/%d/info.0.json",comicId)
 	
 	resp, err := http.Get(url)
 	if err != nil{
@@ -99,16 +102,18 @@ func downloadImage(url string) error{
 }
 
 func main(){
-	var comicId int
+	var comicId int = 0
 	var err error
 	if len(os.Args) > 1 {
-		comicId, err = strconv.Atoi(os.Args[1])
-		if err != nil{
-			fmt.Printf("Comic ID should be an integer! Not %s",os.Args[1])
-			return
+		if os.Args[1] == "random"{
+			comicId = generateRandomComicNumber()
+		} else {
+			comicId, err = strconv.Atoi(os.Args[1])
+			if err != nil{
+				fmt.Printf("Comic ID should be an integer! Not %s",os.Args[1])
+				return
+			}
 		}
-	} else {
-		comicId = generateRandomComicNumber()
 	}
 	
 	comic,err := fetchComic(comicId)
@@ -117,7 +122,7 @@ func main(){
 		return
 	}
 	
-	printXkcdComic(comic)
+	printXkcdComic(comic,"#820173")
 
 	err = downloadImage(comic.Img)
 	if err != nil{
