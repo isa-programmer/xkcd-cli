@@ -27,11 +27,15 @@ jobs:
       - name: Build for macOS amd64
         run: GOOS=darwin GOARCH=amd64 go build -o xkcd-darwin-amd64
 
+      - name: Build for macOS ARM64
+        run: GOOS=darwin GOARCH=arm64 go build -o xkcd-darwin-arm64
+
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
             xkcd/xkcd-linux-amd64
             xkcd/xkcd-darwin-amd64
+            xkcd/xkcd-darwin-arm64
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
