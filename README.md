@@ -17,7 +17,7 @@ A command-line interface for [xkcd.com](https://xkcd.com/) comics.
 ### Download pre-built binaries
 
 ## Example screenshot
-[Screenshot of xkcd-cli in action](assets/example.png)
+![Screenshot of xkcd-cli in action](/assets/example.png)
 
 Grab the latest release for your platform from the [Releases page](https://github.com/isa-programmer/xkcd-cli/releases):
 - **Linux (amd64)**
