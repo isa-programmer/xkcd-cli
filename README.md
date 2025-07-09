@@ -62,27 +62,6 @@ xkcd [options]
   xkcd 927
   ```
 
-## Development
-
-The main code lives in the `xkcd/` directory.
-
-```sh
-tree
-.
-├── LICENSE
-└── xkcd
-    ├── go.mod
-    ├── go.sum
-    └── main.go
-```
-
-You can run tests with:
-
-```sh
-cd xkcd
-go test ./...
-```
-
 ## License
 
 This program licensed with GPLv3. See [LICENSE](LICENSE) for details.
