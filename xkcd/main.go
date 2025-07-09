@@ -96,7 +96,7 @@ func main(){
 	
 	printXkcdComic(comic)
 
-	cmd := exec.Command("feh",comic.Img)
+	cmd := exec.Command("xdg-open",comic.Img)
 
 	err = cmd.Run()
 	if err != nil{

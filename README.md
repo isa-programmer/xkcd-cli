@@ -12,11 +12,11 @@ A command-line interface for [xkcd.com](https://xkcd.com/) comics.
 - Cross-platform support: Linux, macOS (Intel and Apple Silicon)
 - Simple and fast
 
-## Installation
->You need to install [feh](https://github.com/derf/feh) for Image viewing
 
 ## Example screenshot
 ![Screenshot of xkcd-cli in action](assets/example.png)
+
+## Installation
 
 ### Download pre-built binaries
 
