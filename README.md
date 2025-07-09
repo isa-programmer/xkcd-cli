@@ -14,7 +14,7 @@ A command-line interface for [xkcd.com](https://xkcd.com/) comics.
 
 
 ## Example screenshot
-![Screenshot of xkcd-cli in action](assets/example.png)
+![Screenshot of xkcd-cli in action](assets/example.webp)
 
 ## Installation
 
