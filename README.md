@@ -14,10 +14,11 @@ A command-line interface for [xkcd.com](https://xkcd.com/) comics.
 
 ## Installation
 >You need to install [feh](https://github.com/derf/feh) for Image viewing
-### Download pre-built binaries
 
 ## Example screenshot
 ![Screenshot of xkcd-cli in action](assets/example.png)
+
+### Download pre-built binaries
 
 Grab the latest release for your platform from the [Releases page](https://github.com/isa-programmer/xkcd-cli/releases):
 - **Linux (amd64)**
