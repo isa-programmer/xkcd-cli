@@ -18,7 +18,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"io"
 )
+
+
 
 func printXkcdComic(comic XkcdJsonStruct) {
 	var output string
@@ -75,6 +78,26 @@ func generateRandomComicNumber() int {
 	return rand.Intn(3112) + 1
 }
 
+
+func downloadImage(url string) error{
+	resp, err := http.Get(url)
+	if err != nil{
+		return err
+	}
+	defer resp.Body.Close()
+	file, err := os.Create("/tmp/temp_file.png")
+	if err != nil{
+		return err
+	}
+	defer file.Close()
+
+	_, err = io.Copy(file,resp.Body)
+	if err != nil{
+		return err
+	}
+	return nil
+}
+
 func main(){
 	var comicId int
 	var err error
@@ -96,7 +119,12 @@ func main(){
 	
 	printXkcdComic(comic)
 
-	cmd := exec.Command("xdg-open",comic.Img)
+	err = downloadImage(comic.Img)
+	if err != nil{
+		fmt.Println(err)
+	}
+
+	cmd := exec.Command("xdg-open","/tmp/temp_file.png")
 
 	err = cmd.Run()
 	if err != nil{
