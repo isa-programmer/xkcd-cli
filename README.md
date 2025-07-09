@@ -25,23 +25,10 @@ Grab the latest release for your platform from the [Releases page](https://githu
 - **macOS (amd64)**
 - **macOS (ARM64)**
 
-Example for Linux:
+One line installation for Linux and Mac(Apple Silicon/Intel)
 
 ```sh
-sudo wget -O /usr/local/bin/xkcd https://github.com/isa-programmer/xkcd-cli/releases/latest/download/xkcd-linux-amd64
-sudo chmod +x /usr/local/bin/xkcd
-```
-
-Examples for Mac(Apple Silicon/Intel)
-
-```sh
-# For Apple Silicon(M1/M2)
-sudo wget -O /usr/local/bin/xkcd https://github.com/isa-programmer/xkcd-cli/releases/latest/download/xkcd-darwin-arm64
-sudo chmod +x /usr/local/bin/xkcd
-
-# For Apple Intel
-sudo wget -O /usr/local/bin/xkcd https://github.com/isa-programmer/xkcd-cli/releases/latest/download/xkcd-darwin-amd64
-sudo chmod +x /usr/local/bin/xkcd
+curl https://raw.githubusercontent.com/isa-programmer/xkcd-cli/refs/heads/main/install.sh | bash
 ```
 
 ### Build from source
