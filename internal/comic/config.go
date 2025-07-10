@@ -1,9 +1,9 @@
 package comic
 
 import (
+	"os"
 	"path/filepath"
 	"encoding/json"
-	"os"
 	"github.com/isa-programmer/xkcd-cli/internal/models"
 )
 
@@ -12,7 +12,7 @@ func ReadConfigFile() (models.Config,error){
 	home,_ := os.UserHomeDir()
 	configPath := filepath.Join(home,".config","xkcd","xkcd.json")
 	data,err := os.ReadFile(configPath)
-	if err != nil{
+	if err != nil {
 		return config,err
 	}
 	err = json.Unmarshal(data,&config)

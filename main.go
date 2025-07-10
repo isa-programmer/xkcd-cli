@@ -5,13 +5,12 @@ package main
 // URL: https://github.com/isa-programmer/xkcd-cli
 // Description: A command-line interface for xkcd.com comics
 // Usage:
-//		xkcd-cli # A random comic
+//		xkcd-cli random # A random comic
 // 		xkcd-cli 927 # You can choose comic ID yourself
 
 import (
 	"fmt"
 	"github.com/isa-programmer/xkcd-cli/internal/comic"
-	//"github.com/isa-programmer/xkcd-cli/internal/comic/printcomic"
 	"math/rand"
 	"os"
 	"os/exec"
@@ -33,7 +32,6 @@ func main() {
 		fmt.Println("Error while reading config file:", err)
 		return
 	}
-
 	if len(os.Args) > 1 {
 		if os.Args[1] == "random" {
 			comicId = generateRandomComicNumber()
@@ -46,15 +44,14 @@ func main() {
 		}
 	}
 
-	comic, err := comic.FetchComic(comicId)
+	xkcdComic, err := comic.FetchComic(comicId)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+	comic.PrintDetails(xkcdComic, userConfig)
 
-	comic.PrintXkcdComic(comic, userConfig)
-
-	err = comic.DownloadImage(comic.Img)
+	err = comic.Download(xkcdComic.Img)
 	if err != nil {
 		fmt.Println(err)
 	}
