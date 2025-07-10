@@ -3,7 +3,7 @@ package config
 import (
 	"path/filepath"
 	"encoding/json"
-	"xkcd-cli/internal/models"
+	"github.com/isa-programmer/xkcd-cli/internal/models"
 )
 
 func readConfigFile() (models.Config,error){
