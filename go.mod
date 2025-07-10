@@ -1,4 +1,4 @@
-module github.com/isa-programmer/xkcd-cli
+module xkcd-cli
 
 go 1.24.4
 
