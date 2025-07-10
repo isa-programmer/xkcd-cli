@@ -25,6 +25,10 @@ Grab the latest release for your platform from the [Releases page](https://githu
 - **macOS (amd64)**
 - **macOS (ARM64)**
 
+Or run this command( Requires Go 1.22+ )
+```bash
+go install github.com/isa-programmer/xkcd-cli@latest
+```
 ### Build from source
 
 Requires Go 1.22+:
