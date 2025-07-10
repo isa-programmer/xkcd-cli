@@ -25,12 +25,6 @@ Grab the latest release for your platform from the [Releases page](https://githu
 - **macOS (amd64)**
 - **macOS (ARM64)**
 
-One line installation for Linux and Mac(Apple Silicon/Intel)
-
-```sh
-curl https://raw.githubusercontent.com/isa-programmer/xkcd-cli/refs/heads/main/install.sh | bash
-```
-
 ### Build from source
 
 Requires Go 1.22+:

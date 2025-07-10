@@ -29,7 +29,12 @@ func main() {
 
 	userConfig, err := comic.ReadConfigFile()
 	if err != nil {
-		fmt.Println("Error while reading config file:", err)
+		fmt.Println("~/.config/xkcd.json not found! Now it will be created...")
+		err := comic.CreateConfigFile()
+		if err != nil{
+			fmt.Println("Error while creating config file:",err)
+			return
+		}
 		return
 	}
 	if len(os.Args) > 1 {

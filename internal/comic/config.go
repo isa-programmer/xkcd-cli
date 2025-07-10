@@ -7,10 +7,42 @@ import (
 	"github.com/isa-programmer/xkcd-cli/internal/models"
 )
 
+
+
+
+func CreateConfigFile() error {
+	configFileContent := `
+	{
+		"border_color":"#07177f",
+		"background_color":"#030b3f"
+	}
+	`
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return err
+	}
+
+	configPath := filepath.Join(home, ".config", "xkcd.json")
+	file, err := os.Create(configPath)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	_, err = file.WriteString(configFileContent)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+
 func ReadConfigFile() (models.Config,error){
-	var config models.Config
+	config := models.Config{}
+	
 	home,_ := os.UserHomeDir()
-	configPath := filepath.Join(home,".config","xkcd","xkcd.json")
+	configPath := filepath.Join(home,".config","xkcd.json")
 	data,err := os.ReadFile(configPath)
 	if err != nil {
 		return config,err
