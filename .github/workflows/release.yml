@@ -22,6 +22,10 @@ jobs:
           mkdir -p dist
           GOOS=linux GOARCH=amd64 go build -o dist/xkcd-linux-amd64 ./cmd
 
+      - name: Build for Linux arm64
+        run: |
+          GOOS=linux GOARCH=arm64 go build -o dist/xkcd-linux-arm64 ./cmd
+
       - name: Build for macOS amd64
         run: |
           GOOS=darwin GOARCH=amd64 go build -o dist/xkcd-darwin-amd64 ./cmd
@@ -35,6 +39,7 @@ jobs:
         with:
           files: |
             dist/xkcd-linux-amd64
+            dist/xkcd-linux-arm64
             dist/xkcd-darwin-amd64
             dist/xkcd-darwin-arm64
         env:
