@@ -3,7 +3,7 @@ package printcomic
 import (
 	"github.com/charmbracelet/lipgloss"
 	"fmt"
-	"xkcd-cli/internal/models"
+	"github.com/isa-programmer/xkcd-cli/internal/models"
 )
 
 func print(comic XkcdJsonStruct, config models.Config) {

@@ -15,11 +15,11 @@ import (
 	"os/exec"
 	"strconv"
 	"time"
-	"xkcd-cli/internal/comic/printcomic"
-	"xkcd-cli/internal/comic/fetch"
-	"xkcd-cli/internal/comic/download"
-	"xkcd-cli/internal/comic/config"
-	"xkcd-cli/internal/models"
+	"github.com/isa-programmer/xkcd-cli/internal/comic/printcomic"
+	"github.com/isa-programmer/xkcd-cli/internal/comic/fetch"
+	"github.com/isa-programmer/xkcd-cli/internal/comic/download"
+	"github.com/isa-programmer/xkcd-cli/internal/comic/config"
+	"github.com/isa-programmer/xkcd-cli/internal/models"
 )
 
 func generateRandomComicNumber() int {
