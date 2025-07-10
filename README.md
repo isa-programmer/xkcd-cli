@@ -22,6 +22,7 @@ A command-line interface for [xkcd.com](https://xkcd.com/) comics.
 
 Grab the latest release for your platform from the [Releases page](https://github.com/isa-programmer/xkcd-cli/releases):
 - **Linux (amd64)**
+- **Linux (ARM64)**
 - **macOS (amd64)**
 - **macOS (ARM64)**
 
