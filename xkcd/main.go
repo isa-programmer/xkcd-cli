@@ -19,9 +19,28 @@ import (
 	"os/exec"
 	"strconv"
 	"time"
+	"path/filepath"
 )
 
-func printXkcdComic(comic XkcdJsonStruct, color string) {
+type Config struct{
+	BorderColor 	string `json:"border_color"`
+	BackgroundColor string `json:"background_color"`
+	
+}
+
+func readConfigFile() (Config,error){
+	var config Config
+	home,_ := os.UserHomeDir()
+	configPath := filepath.Join(home,".config","xkcd","xkcd.json")
+	data,err := os.ReadFile(configPath)
+	if err != nil{
+		return config,err
+	}
+	err = json.Unmarshal(data,&config)
+	return config, err
+} 
+
+func printXkcdComic(comic XkcdJsonStruct, config Config) {
 	var output string
 	output = fmt.Sprintf(`
 	- Comic Link: https://xkcd.com/%d
@@ -33,8 +52,8 @@ func printXkcdComic(comic XkcdJsonStruct, color string) {
 	style := lipgloss.NewStyle().
 		Width(80).
 		Border(lipgloss.ThickBorder()).
-		BorderForeground(lipgloss.Color(color)).
-		Background(lipgloss.Color(color))
+		BorderForeground(lipgloss.Color(config.BorderColor)).
+		Background(lipgloss.Color(config.BackgroundColor))
 
 	fmt.Println(style.Render(output))
 }
@@ -100,6 +119,13 @@ func downloadImage(url string) error {
 func main() {
 	var comicId int = 0
 	var err error
+
+	config,err := readConfigFile()
+	if err != nil{
+		fmt.Println("Error while reading config file:",err)
+		return
+	}
+	
 	if len(os.Args) > 1 {
 		if os.Args[1] == "random" {
 			comicId = generateRandomComicNumber()
@@ -117,8 +143,8 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-
-	printXkcdComic(comic, "#820173")
+	
+	printXkcdComic(comic, config)
 
 	err = downloadImage(comic.Img)
 	if err != nil {
