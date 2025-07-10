@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"encoding/json"
 	"net/http"
-	"xkcd-cli/internal/models"
+	"github.com/isa-programmer/xkcd-cli/internal/models"
 )
 
 func fetchComic(comicId int) (models.XkcdJsonStruct, error) {
