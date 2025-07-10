@@ -1,4 +1,4 @@
-package printcomic
+package "internal/comic/printcomic"
 
 import (
 	"github.com/charmbracelet/lipgloss"

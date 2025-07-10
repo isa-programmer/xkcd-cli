@@ -1,4 +1,4 @@
-package download
+package "internal/comic/download"
 
 import (
 	"net/http"
