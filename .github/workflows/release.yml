@@ -8,10 +8,6 @@ on:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: xkcd
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,23 +15,27 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'  # Change if needed
+          go-version: '1.22'
 
       - name: Build for Linux amd64
-        run: GOOS=linux GOARCH=amd64 go build -o xkcd-linux-amd64
+        run: |
+          mkdir -p dist
+          GOOS=linux GOARCH=amd64 go build -o dist/xkcd-linux-amd64 ./cmd
 
       - name: Build for macOS amd64
-        run: GOOS=darwin GOARCH=amd64 go build -o xkcd-darwin-amd64
+        run: |
+          GOOS=darwin GOARCH=amd64 go build -o dist/xkcd-darwin-amd64 ./cmd
 
       - name: Build for macOS ARM64
-        run: GOOS=darwin GOARCH=arm64 go build -o xkcd-darwin-arm64
+        run: |
+          GOOS=darwin GOARCH=arm64 go build -o dist/xkcd-darwin-arm64 ./cmd
 
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            xkcd/xkcd-linux-amd64
-            xkcd/xkcd-darwin-amd64
-            xkcd/xkcd-darwin-arm64
+            dist/xkcd-linux-amd64
+            dist/xkcd-darwin-amd64
+            dist/xkcd-darwin-arm64
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
