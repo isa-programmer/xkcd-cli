@@ -1,4 +1,4 @@
-package "internal/comic/printcomic"
+package comic
 
 import (
 	"github.com/charmbracelet/lipgloss"
@@ -6,7 +6,7 @@ import (
 	"github.com/isa-programmer/xkcd-cli/internal/models"
 )
 
-func print(comic XkcdJsonStruct, config models.Config) {
+func PrintXkcdComic(comic models.XkcdJsonStruct, config models.Config) {
 	var output string
 	output = fmt.Sprintf(`
 	- Comic Link: https://xkcd.com/%d

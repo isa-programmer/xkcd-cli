@@ -1,4 +1,4 @@
-package "internal/comic/fetch"
+package comic
 
 
 import (
@@ -8,7 +8,7 @@ import (
 	"github.com/isa-programmer/xkcd-cli/internal/models"
 )
 
-func fetchComic(comicId int) (models.XkcdJsonStruct, error) {
+func FetchComic(comicId int) (models.XkcdJsonStruct, error) {
 	var comic models.XkcdJsonStruct
 	var url string = "https://xkcd.com/info.0.json"
 	if comicId != 0 {

@@ -10,16 +10,13 @@ package main
 
 import (
 	"fmt"
+	"github.com/isa-programmer/xkcd-cli/internal/comic"
+	//"github.com/isa-programmer/xkcd-cli/internal/comic/printcomic"
 	"math/rand"
 	"os"
 	"os/exec"
 	"strconv"
 	"time"
-	"internal/comic/printcomic"
-	"internal/comic/fetch"
-	"internal/comic/download"
-	"internal/comic/config"
-	"internal/models"
 )
 
 func generateRandomComicNumber() int {
@@ -31,12 +28,12 @@ func main() {
 	var comicId int = 0
 	var err error
 
-	userConfig,err := config.readConfigFile()
-	if err != nil{
-		fmt.Println("Error while reading config file:",err)
+	userConfig, err := comic.ReadConfigFile()
+	if err != nil {
+		fmt.Println("Error while reading config file:", err)
 		return
 	}
-	
+
 	if len(os.Args) > 1 {
 		if os.Args[1] == "random" {
 			comicId = generateRandomComicNumber()
@@ -49,15 +46,15 @@ func main() {
 		}
 	}
 
-	comic, err := fetchComic(comicId)
+	comic, err := comic.FetchComic(comicId)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	
-	printXkcdComic(comic, userConfig)
 
-	err = download.downloadImage(comic.Img)
+	comic.PrintXkcdComic(comic, userConfig)
+
+	err = comic.DownloadImage(comic.Img)
 	if err != nil {
 		fmt.Println(err)
 	}

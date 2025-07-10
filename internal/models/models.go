@@ -1,4 +1,4 @@
-package "internal/models"
+package models
 
 
 // Config structure

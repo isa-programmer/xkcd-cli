@@ -1,12 +1,13 @@
-package config
+package comic
 
 import (
 	"path/filepath"
 	"encoding/json"
+	"os"
 	"github.com/isa-programmer/xkcd-cli/internal/models"
 )
 
-func readConfigFile() (models.Config,error){
+func ReadConfigFile() (models.Config,error){
 	var config models.Config
 	home,_ := os.UserHomeDir()
 	configPath := filepath.Join(home,".config","xkcd","xkcd.json")
